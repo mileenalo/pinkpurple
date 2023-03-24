@@ -99,8 +99,7 @@ if (isset($_GET["a"])) {
         $id = $_POST["id"];
         $name = $_POST["name"];
         $email = $_POST["email"];
-        $passsword = md5($_POST["password"]);
-
+        $password = md5($_POST["password"]);
 
         $res = $db->_exec("UPDATE tb_usuarios SET usu_name = '{$name}', usu_email = '{$email}', usu_password = '$password' WHERE usu_id = $id");
 
@@ -351,7 +350,7 @@ include('aside.php');
                 data: {
                     name: $('#frm_nome_edit').val(),
                     email: $('#frm_email_edit').val(),
-                    password: $('#frm_email_edit').val(),
+                    password: $('#frm_password_edit').val(),
                     id: $('#frm_id_edit').val(),
                 },
                 beforeSend: function() {

@@ -12,10 +12,10 @@ if (isset($_GET["a"])) {
 	* Edita conteúdo:
 	* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 	if ($_GET["a"] == "logar") {
-
+		
 		$email = $_POST["email"];
 		$senha = md5($_POST["senha"]);
-
+		
 		if($email == "" || $senha == ""){
 			echo '<div class="alert alert-warning" role="alert">';
 				echo 'O campo email ou senha se encontra vazio!';
@@ -24,7 +24,8 @@ if (isset($_GET["a"])) {
 
 			$sel = $db->select("SELECT usu_id, usu_name, usu_password FROM tb_usuarios WHERE usu_email = '$email'");
 
-			if(!empty($sel)){			
+			if(!empty($sel)){		
+				
 				if ($sel[0]["usu_password"] == $senha) {
 
 					setcookie("idUsuario", md5($sel[0]["usu_id"].date("Ymd")), 0);

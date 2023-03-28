@@ -136,8 +136,8 @@ if (isset($_GET["a"])) {
         $quantidade = $_POST["quantidade"];
         $tamanho = $_POST["tamanho"];
         $codbar = $_POST["codbar"];
-        
-        $res = $db->_exec("UPDATE tb_product
+       
+        $res = $db->_exec("UPDATE tb_produtos
                             SET pro_name = '{$name}', pro_descri = '{$descri}', 
                             pro_tamanho = '{$tamanho}', pro_valvend = {$valor}, 
                             pro_codbar = '{$codbar}', pro_quantidade = {$quantidade}
@@ -423,7 +423,7 @@ include('aside.php');
      * permite a edição de itens dentro do pedido:
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
     var ajax_div = $.ajax(null);
-    const editPro = (countarray, iditens, idPed) => {
+    const editPro = () => {
 
         if (confirm("Confirma a edição do produto?")) {
             if (ajax_div) {
@@ -433,21 +433,22 @@ include('aside.php');
             ajax_div = $.ajax({
                 cache: false,
                 async: true,
-                url: '?uid=<?php echo $_COOKIE['idUsuario']; ?>&a=edita_client',
+                url: '?uid=<?php echo $_COOKIE['idUsuario']; ?>&a=edita_product',
                 type: 'post',
                 data: {
-                    name: $("#frm_nome").val(),
-                    descri: $("#frm_descri").val(),
-                    valor: $("#frm_valor").val(),
-                    codbar: $("#frm_codbar").val(),
-                    tamanho: $("#frm_tamanho").val(),
-                    quantidade: $("#frm_quantidade").val(),
+                    name: $("#frm_nome_edit").val(),
+                    descri: $("#frm_descri_edit").val(),
+                    valor: $("#frm_valor_edit").val(),
+                    codbar: $("#frm_codbar_edit").val(),
+                    tamanho: $("#frm_tamanho_edit").val(),
+                    quantidade: $("#frm_quantidade_edit").val(),
                     id: $('#frm_id_edit').val(),
                 },
                 beforeSend: function() {
                     $('#mod_formul_edit').modal("show");
                 },
                 success: function retorno_ajax(retorno) {
+                    console.log(retorno)
                     if (!retorno) {
                         alert("ERRO AO EDITAR O PRODUTO!");
                     }else{

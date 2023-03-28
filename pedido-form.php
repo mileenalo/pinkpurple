@@ -1,9 +1,8 @@
-<div id="div-row-operation-sample" style="display:none">
+<div id="div-row-operation-sample">
 	<div class="row" id="div-row-x">
 		<div class="col-4" id="select">
 			<label for="pro_codigo_x" class="form-label">Produto</label>
-            <input type="text" class="form-control" value="" name="pro_codigo[]" id="pro_codigo_x" placeholder="0" onchange="sel_desc();">
-			<input type="text" class="form-control" value="" name="pro_desc[]" id="pro_desc_x">
+            <select>
             <input type="text" class="form-control" value="" name="pro_prc[]" id="pro_prc_x">
 		</div>
 		<div class="col-4">

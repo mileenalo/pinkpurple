@@ -35,14 +35,10 @@ if (isset($_GET["a"])) {
 					echo 1;
 
 				}else{
-					echo '<div class="alert alert-warning" role="alert">';
-						echo 'Senha Incorreta!';
-					echo '</div>';
+					echo 'Senha Incorreta!';
 				}
 			}else{
-				echo '<div class="alert alert-warning" role="alert">';
-					echo 'Não há registro desse email de Usuario!';
-				echo '</div>';
+				echo 'Não há registro desse email de Usuario!';
 			}
 
 		}
@@ -87,6 +83,7 @@ include("header.php");
                   				</p>
                 			</form>
               			</div>
+						<div id=""></div>
            	 		</div>
           		</div>
         	</div>
@@ -128,11 +125,7 @@ include("header.php");
 				if(retorno == 1){
 					document.location.href="./pedidos.php?uid=<?php echo $_COOKIE['idUsuario']; ?>";
 				}else{
-					if (retorno) {
-						$('#div_retorno').html(retorno);
-					} else {
-						alert("ERRO! " + retorno);
-					}
+					alert("ERRO! " + retorno);
 				}
 			}
 		});

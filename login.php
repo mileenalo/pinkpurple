@@ -27,20 +27,22 @@ if (isset($_GET["a"])) {
 			if(!empty($sel)){		
 				
 				if ($sel[0]["usu_password"] == $senha) {
-
-					setcookie("idUsuario", md5($sel[0]["usu_id"].date("Ymd")), 0);
+					setcookie("codUsu", md5($sel[0]["usu_id"].date("Ymd")), 0);
+					setcookie("idUsuario", $sel[0]["usu_id"], 0);
 					setcookie("nome", $email, 0);
 					setcookie("senha", $senha, 0);
 
-					echo 1;
+					$res["success"] = $_COOKIE["codUsu"];
+					echo json_encode($res);
 
 				}else{
-					echo 'Senha Incorreta!';
+					$res["error"] = 'Senha Incorreta!';
+					echo json_encode($res);
 				}
 			}else{
-				echo 'Não há registro desse email de Usuario!';
+				$res["error"] = 'Não há registro desse email de Usuario!';
+				echo json_encode($res);
 			}
-
 		}
 	}
 
@@ -122,10 +124,11 @@ include("header.php");
 			},
 			success: function retorno_ajax(retorno) {
 				console.log(retorno);
-				if(retorno == 1){
-					document.location.href="./pedidos.php?uid=<?php echo $_COOKIE['idUsuario']; ?>";
+				var obj = JSON.parse(retorno);
+				if(obj.success != undefined){
+					document.location.href="./pedidos.php?uid="+obj.success;
 				}else{
-					alert("ERRO! " + retorno);
+					alert("ERRO! " + obj.error);
 				}
 			}
 		});

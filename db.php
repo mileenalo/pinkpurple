@@ -6,21 +6,21 @@ ini_set('max_input_vars', 10000);
 class Database extends PDO
 {
 
-    public $host = "dbrenderer.cmvborrse5et.us-east-2.rds.amazonaws.com";
+    public $host = "localhost";
     public $port = 3306;
     public $schema = "db_pinkpurple";
     public $username = "root";
-    public $password = "clinica17";
+    public $password = "";
 
     public function __construct($type = 'mysql')
     {
         set_time_limit(3600);
 
-        $this->host = "dbrenderer.cmvborrse5et.us-east-2.rds.amazonaws.com";
+        $this->host = "localhost";
         $this->port = 3306;
         $this->schema = "db_pinkpurple";
         $this->username = "root";
-        $this->password = "clinica17";
+        $this->password = "";
 
         if ($type == 'mysql') {
             $dsn = sprintf('mysql:host=%s;port=%d;dbname=%s', $this->host, $this->port, $this->schema);
